@@ -42,10 +42,20 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 // Apps
 const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+const db = getFirestore();
+const storage = getStorage();
 
 export { app, auth, db, storage };
+
+//DB Users
+export async function userExist(uid) {
+  //Definimos en donde buscar la referencia (users). Le decimos que busque en "db", en la colección de "users" el documento (data: uid).
+  const docRef = doc(db, 'users', uid);
+  //Le decimos que traiga la data-documento, le pasamos la referencia:
+  const docSnap = await getDoc(docRef);
+  console.log(docSnap);
+  //res contiene: data (muestra solo la data), exist (devuelve true o false si existe) y get (nos trae todo).
+  return docSnap.exists();
+}
