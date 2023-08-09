@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
-// Toma las configuraciones.
+// Toma las configuraciones de Firebase.
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
